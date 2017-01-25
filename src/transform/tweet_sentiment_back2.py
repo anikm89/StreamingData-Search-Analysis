@@ -1,18 +1,13 @@
 #from __future__ import print_function
-import sys
 import json
-import traceback
-from compiler.ast import flatten
 import time
 
-import connectDB
-import connectDB1
-import tweetGeoLocation
-import generateOutputFiles
-import builTweetDataStruct
-import tweetDataAnalyzer
-import referenceData
-import tweetLogs
+import src.inOut.generateOutputFiles
+import src.inOut.referenceData
+from src.analyze import tweetDataAnalyzer
+from src.logs import tweetLogs
+from src.store import connectDB1
+from src.transform import builTweetDataStruct, tweetGeoLocation
 
 tweetobj = []
 tweetRow = []
@@ -163,7 +158,7 @@ def inTweets(fp):
     #opentweet = open("output_V1.txt","r")
     #opentweet = open("output.txt","r")
 
-    wordsdict = referenceData.AfinDict(fp)
+    wordsdict = src.inOut.referenceData.AfinDict(fp)
     #crimeWordsList = referenceData.crimeWords()
 
     for line in opentweet:
@@ -185,7 +180,7 @@ def inTweets(fp):
         getUserDetails(tweetobj)
 
         #Sentiment Analysis
-        tweetScore = tweetDataAnalyzer.sentimentScore(wordsdict,tweetWords)
+        tweetScore = tweetDataAnalyzer.sentimentScore(wordsdict, tweetWords)
 
         # crime Analysis
         tweetCrime = tweetDataAnalyzer.crime(tweetScore[row])
@@ -195,10 +190,10 @@ def inTweets(fp):
         (hscore, dscore, candidate)= tweetDataAnalyzer.presidentialCandidateScoring (tweetWords)
 
         #WordCounts
-        (tweeter, tweetHash, tweetMaxWords)=tweetDataAnalyzer.tweetWordCount(tweetWords)
+        (tweeter, tweetHash, tweetMaxWords)= tweetDataAnalyzer.tweetWordCount(tweetWords)
 
-        connectDB1.dbConnection1(tweetText,tweetLang,tweetTimeZone,tweetCreateAt,tweetLocation,tweetLatitude,tweetLongitude,tweetUserName,
-                     tweetUserScreen,tweetUserUrl,tweetScore,tweetCrime,candidate,hscore,dscore,row)
+        connectDB1.dbConnection1(tweetText, tweetLang, tweetTimeZone, tweetCreateAt, tweetLocation, tweetLatitude, tweetLongitude, tweetUserName,
+                                 tweetUserScreen, tweetUserUrl, tweetScore, tweetCrime, candidate, hscore, dscore, row)
 
         row +=1
 
@@ -210,9 +205,9 @@ def inTweets(fp):
     tweetdict = builTweetDataStruct.tweetDictionary(tweetItemsList)
     df = builTweetDataStruct.buildDataFrame(tweetdict)
 
-    generateOutputFiles.wordCountfile(tweeter)
-    generateOutputFiles.HashCountFile(tweetHash)
-    generateOutputFiles.BigWordsCountFile(tweetMaxWords)
+    src.inOut.generateOutputFiles.wordCountfile(tweeter)
+    src.inOut.generateOutputFiles.HashCountFile(tweetHash)
+    src.inOut.generateOutputFiles.BigWordsCountFile(tweetMaxWords)
     #generateOutputFiles.tweetDataCSV(df)
 
     #Insert Analysis Into Oracle DataBase

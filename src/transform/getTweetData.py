@@ -1,20 +1,11 @@
 #from __future__ import print_function
-import sys
-import json
-import traceback
-from compiler.ast import flatten
 import time
-import tweetThreads
-import connectDB
-import connectDB1
-import tweetGeoLocation
-import generateOutputFiles
-import builTweetDataStruct
-import tweetDataAnalyzer
-import referenceData
-import tweetLogs
 from datetime import datetime
-import nlp
+
+import src.analyze.tweetDataAnalyzer
+import src.inOut.generateOutputFiles
+import src.inOut.referenceData
+from src.logs import tweetLogs
 
 tweetobj = []
 tweetRow = []
@@ -198,7 +189,7 @@ def inTweets(tweet,row,query):
     default = 'NA'
 
 
-    wordsdict = referenceData.AfinDict()
+    wordsdict = src.inOut.referenceData.AfinDict()
     desc = ''
     txt = ''
 
@@ -222,19 +213,19 @@ def inTweets(tweet,row,query):
     (tweetLang, tweetTimeZone, tweetDate, tweetTime, tweetLocation, tweetLatitude, tweetLongitude, tweetUserName, tweetUserScreen, tweetUserUrl) = getUserDetails(tweet)
 
     """ Sentiment Analysis """
-    tweetScore,tweetType = tweetDataAnalyzer.sentimentScore(wordsdict,tweetWords)
+    tweetScore,tweetType = src.analyze.tweetDataAnalyzer.sentimentScore(wordsdict, tweetWords)
 
     """" crime Analysis """
-    tweetCrime = tweetDataAnalyzer.crime(tweetScore[row])
+    tweetCrime = src.analyze.tweetDataAnalyzer.crime(tweetScore[row])
 
     """ Election Analysis """
-    (hscore, dscore, candidate)= tweetDataAnalyzer.presidentialCandidateScoring (tweetWords)
+    (hscore, dscore, candidate)= src.analyze.tweetDataAnalyzer.presidentialCandidateScoring (tweetWords)
 
     """ Query Analysis """
-    (queryScore, queryList,querySearchResult)= tweetDataAnalyzer.queryResultsScore (tweetWords,query,row,txt)
+    (queryScore, queryList,querySearchResult)= src.analyze.tweetDataAnalyzer.queryResultsScore (tweetWords, query, row, txt)
 
     """ WordCounts """
-    (tweeter, tweetHash, tweetMaxWords)=tweetDataAnalyzer.tweetWordCount(tweetWords)
+    (tweeter, tweetHash, tweetMaxWords)= src.analyze.tweetDataAnalyzer.tweetWordCount(tweetWords)
 
     """Document ID"""
     docID.append(row)
@@ -255,9 +246,9 @@ def inTweets(tweet,row,query):
     #print tweetdict
     #print df
 
-    generateOutputFiles.wordCountfile(tweeter)
-    generateOutputFiles.HashCountFile(tweetHash)
-    generateOutputFiles.BigWordsCountFile(tweetMaxWords)
+    src.inOut.generateOutputFiles.wordCountfile(tweeter)
+    src.inOut.generateOutputFiles.HashCountFile(tweetHash)
+    src.inOut.generateOutputFiles.BigWordsCountFile(tweetMaxWords)
     #generateOutputFiles.tweetDataCSV(df)
 
     #test =tweetDataAnalyzer.tweetWordCount(tweetWords)

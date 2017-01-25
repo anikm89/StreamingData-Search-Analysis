@@ -1,11 +1,10 @@
-import geopy
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut
-import tweetLogs
 from time import sleep
-from geopy.exc import GeocoderServiceError
-import urllib2
-import requests
+
+import geopy
+from geopy.exc import GeocoderTimedOut
+from geopy.geocoders import Nominatim
+
+from src.logs import tweetLogs
 
 
 def setLocation(location):

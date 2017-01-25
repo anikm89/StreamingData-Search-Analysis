@@ -1,9 +1,10 @@
-from collections import Counter
-import pandas as pd
-import tweetDataAnalyzer
-import getTweetData
 import operator
+from collections import Counter
 
+import pandas as pd
+
+from src.analyze import tweetDataAnalyzer
+from src.transform import getTweetData
 
 
 def queryResults (queryTable):

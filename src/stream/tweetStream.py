@@ -4,7 +4,7 @@ import urllib2 as urllib
 import oauth2 as oauth
 from pymongo import MongoClient
 
-from src import transformTweet as ts
+from src.transform import transformTweet as ts
 
 # See assignment1.html instructions or README for how to get these credentials
 

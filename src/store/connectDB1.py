@@ -1,6 +1,6 @@
 import cx_Oracle
-import logging
-import tweetLogs
+
+from src.logs import tweetLogs
 
 k = []
 l = []

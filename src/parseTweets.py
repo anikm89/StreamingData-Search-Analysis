@@ -1,17 +1,9 @@
-import pymongo
-import sys
+import time
+from collections import Counter
 import pandas as pd
 from pymongo import MongoClient
-import tweet_sentiment
-import builTweetDataStruct
-from collections import Counter
-import getTweetData
-import plotting
-import newPlotting
-import time
-import searchQueryResults
-from pandas import DataFrame
-
+from src.analyze import searchQueryResults
+from src.transform import builTweetDataStruct, getTweetData
 
 tweetItemsList =[]
 query ="obama"
@@ -27,7 +19,7 @@ def connectMongo():
 
     for tweet in tweets_iterator:
         #(row,tl)=tweet_sentiment.inTweets(tweet,row,query)
-        (row,tl,querySearchResult)=getTweetData.inTweets(tweet,row,query)
+        (row,tl,querySearchResult)= getTweetData.inTweets(tweet, row, query)
         row = row + 1
         #print row
 

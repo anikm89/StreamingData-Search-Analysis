@@ -1,19 +1,11 @@
 #from __future__ import print_function
-import sys
-import json
-import traceback
-from compiler.ast import flatten
 import time
-import tweetThreads
-import connectDB
-import connectDB1
-import tweetGeoLocation
-import generateOutputFiles
-import builTweetDataStruct
-import tweetDataAnalyzer
-import referenceData
-import tweetLogs
 from datetime import datetime
+
+import src.inOut.referenceData
+from src.analyze import tweetDataAnalyzer
+from src.logs import tweetLogs
+from src.transform import tweetGeoLocation
 
 tweetobj = []
 tweetRow = []
@@ -231,7 +223,7 @@ def inTweets(tweet,row,query):
     default = 'NA'
 
 
-    wordsdict = referenceData.AfinDict()
+    wordsdict = src.inOut.referenceData.AfinDict()
 
     desc = ''
     txt = ''
@@ -254,7 +246,7 @@ def inTweets(tweet,row,query):
     getUserDetails1(tweet)
 
     """ Sentiment Analysis """
-    tweetScore,tweetType = tweetDataAnalyzer.sentimentScore(wordsdict,tweetWords)
+    tweetScore,tweetType = tweetDataAnalyzer.sentimentScore(wordsdict, tweetWords)
 
     """" crime Analysis """
     tweetCrime = tweetDataAnalyzer.crime(tweetScore[row])
@@ -264,10 +256,10 @@ def inTweets(tweet,row,query):
     (hscore, dscore, candidate)= tweetDataAnalyzer.presidentialCandidateScoring (tweetWords)
 
     """ Query Analysis """
-    (queryScore, queryList)= tweetDataAnalyzer.queryResultsScore (tweetWords,query)
+    (queryScore, queryList)= tweetDataAnalyzer.queryResultsScore (tweetWords, query)
 
     """ WordCounts """
-    (tweeter, tweetHash, tweetMaxWords)=tweetDataAnalyzer.tweetWordCount(tweetWords)
+    (tweeter, tweetHash, tweetMaxWords)= tweetDataAnalyzer.tweetWordCount(tweetWords)
 
     #connectDB1.dbConnection1(tweetUserID,tweetText,tweetLang,tweetTimeZone,tweetDate,tweetTime,tweetLocation,tweetLatitude,tweetLongitude,tweetUserName,
     #             tweetUserScreen,tweetUserUrl,tweetScore,tweetCrime,candidate,hscore,dscore,row)

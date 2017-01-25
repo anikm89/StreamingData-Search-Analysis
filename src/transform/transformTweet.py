@@ -1,17 +1,7 @@
-import tweetLogs
-import time
-import tweetThreads
-import connectDB
-import connectDB1
-import tweetGeoLocation
-import generateOutputFiles
-import builTweetDataStruct
-import tweetDataAnalyzer
-import referenceData
-import tweetLogs
 from datetime import datetime
 
-
+import src.transform.tweetGeoLocation
+from src.logs import tweetLogs
 
 scores ={}
 counter = 0
@@ -129,7 +119,7 @@ def getUserDetails(tweetobj):
             tweetLocation = 'NA'
             tweetLogs.logIt(r)
         try:
-            locTuple = tweetGeoLocation.setLocation(stringFormat(constructString(tweetuser['location'])))
+            locTuple = src.transform.tweetGeoLocation.setLocation(stringFormat(constructString(tweetuser['location'])))
             tweetLatitude = locTuple[0]
             tweetLongitude = locTuple[1]
         except KeyError as e:
