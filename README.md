@@ -6,9 +6,10 @@
 3. Searching for results based on input keywords
 
 Analysis:
-1. Deriving people’s sentiments for the presidential candidates
-   dashboard:
-   https://spotfire.cloud.tibco.com/spotfire/wp/render/QZGmidrJVAwGE15CfM/analysis?file=/users/anagrawa/Public/tweetDataElectionAnalysis&waid=7A2O11-8yk-R0viMxeU19-180305dda6Lb3C&wavid=0
+
+1. US states sentiments and Acitvities
+Dashboard:
+https://spotfire.cloud.tibco.com/spotfire/wp/render/QZGmidrJVAwGE15CfM/analysis?file=/users/anagrawa/Public/twitterDataAnalysis&waid=tcpVDzeF_UOtKK_qv2Vv7-1803055da5xPpJ&wavid=0
    
    
 
