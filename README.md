@@ -22,8 +22,7 @@ https://spotfire.cloud.tibco.com/spotfire/wp/OpenAnalysis?file=84784eb5-ded0-4cb
 ##Workflow: 
 twitter->pipeline->load->analyze
 
-##Pipeline:
-1. Formatting the realtime twitter data : cleaning up data
+1. Formatting the realtime twitter data : cleaning up data (encoding unicode text, initializing locations)
 2. transform jason data into metdata format and store extracted results in aoracle database as records
 3. Accessing the database to build business intelligence dashbards
 4. Ability to stream real-time twitter feed and derive analysis
