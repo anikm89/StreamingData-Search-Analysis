@@ -7,13 +7,17 @@
 
 Analysis:
 
-1. US states sentiments and Acitvities
-Dashboard:
-https://spotfire.cloud.tibco.com/spotfire/wp/render/QZGmidrJVAwGE15CfM/analysis?file=/users/anagrawa/Public/twitterDataAnalysis&waid=tcpVDzeF_UOtKK_qv2Vv7-1803055da5xPpJ&wavid=0
+1. Twitter Reacts 'President Trump'
+dashboard:
+https://spotfire.cloud.tibco.com/spotfire/wp/render/dyuHI9GrdEXvoWo3i1/analysis?file=/users/anagrawa/Public/twitter_reacts_trump&waid=e68zpoAeXUOuKzmQMKR5i-0420231da9tCH0&wavid=0
 
 2. Deriving people’s sentiments for the presidential candidates
 Dashboard:
 https://spotfire.cloud.tibco.com/spotfire/wp/OpenAnalysis?file=84784eb5-ded0-4cb4-aeac-23e17fbc3ada
+
+3. US states sentiments and Acitvities
+Dashboard:
+https://spotfire.cloud.tibco.com/spotfire/wp/render/QZGmidrJVAwGE15CfM/analysis?file=/users/anagrawa/Public/twitterDataAnalysis&waid=tcpVDzeF_UOtKK_qv2Vv7-1803055da5xPpJ&wavid=0
 
 3. Results for Text search:
 
@@ -31,3 +35,7 @@ twitter->pipeline->load->analyze
    b. List of Top retweets
    c. List of top location
    d. List of related keywords, hashtags
+   
+   
+   Screenshots:
+   
