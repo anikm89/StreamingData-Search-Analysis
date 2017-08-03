@@ -19,12 +19,8 @@ https://spotfire.cloud.tibco.com/spotfire/wp/OpenAnalysis?file=84784eb5-ded0-4cb
    * Dashboard:
 https://spotfire.cloud.tibco.com/spotfire/wp/render/QZGmidrJVAwGE15CfM/analysis?file=/users/anagrawa/Public/twitterDataAnalysis&waid=tcpVDzeF_UOtKK_qv2Vv7-1803055da5xPpJ&wavid=0
 
-3. Results for Text search:
-
-   
-
 ## Workflow: ##
-* twitter->pipeline->load->analyze
+* twitter-API -> pipeline -> load -> analyze
 
 1. Formatting the realtime twitter data : cleaning up data (encoding unicode text, initializing locations) and sotring them in MongoDB
 2. Access the documents from MongoDB and transform jason data into tabular format and store extracted results in oracle database
